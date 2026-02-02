@@ -21,8 +21,7 @@
         </div>
       </div><!-- /.box-header -->
       <div class="box-body">
-        <table
-          name="fieldsets" id="sort" class="table table-responsive todo-list">
+        <table id="sort" class="table table-responsive table-striped snipe-table table-no-bordered todo-list">
           <thead>
             <tr>
               {{-- Hide the sorting handle if we can't update the fieldset --}}
