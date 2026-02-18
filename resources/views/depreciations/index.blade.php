@@ -6,34 +6,22 @@
 @parent
 @stop
 
+
 {{-- Page content --}}
 @section('content')
     <x-container>
-
-        <x-page-column>
-            <x-box.container>
-              <table
-                  data-columns="{{ \App\Presenters\DepreciationPresenter::dataTableLayout() }}"
-                  data-cookie-id-table="depreciationsTable"
-                  data-id-table="depreciationsTable"
-                  data-side-pagination="server"
-                  data-sort-order="asc"
-                  id="depreciationsTable"
-                  data-advanced-search="false"
-                  data-buttons="depreciationButtons"
-                  class="table table-striped snipe-table"
-                  data-url="{{ route('api.depreciations.index') }}"
-                  data-export-options='{
-                    "fileName": "export-depreciations-{{ date('Y-m-d') }}",
-                    "ignoreColumn": ["actions","image","change","checkbox","checkincheckout","icon"]
-                    }'>
-              </table>
-
-            </x-box.container>
-        </x-page-column>
-
+        <x-box>
+            <x-table
+                    show_column_search="false"
+                    buttons="depreciationButtons"
+                    fixed_right_number="1"
+                    fixed_number="1"
+                    api_url="{{ route('api.depreciations.index') }}"
+                    :presenter="\App\Presenters\DepreciationPresenter::dataTableLayout()"
+                    export_filename="export-depreciations-{{ date('Y-m-d') }}"
+            />
+        </x-box>
     </x-container>
-
 @stop
 
 @section('moar_scripts')

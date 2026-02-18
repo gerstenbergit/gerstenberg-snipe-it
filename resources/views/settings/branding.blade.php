@@ -73,9 +73,9 @@
                             </div>
 
                         <fieldset name="color-preferences">
-                            <x-form-legend help_text="{!! trans('admin/settings/general.color_settings_help') !!}">
+                            <x-form.legend help_text="{!! trans('admin/settings/general.color_settings_help') !!}">
                                 {{ trans('admin/settings/general.color_preferences') }}
-                            </x-form-legend>
+                            </x-form.legend>
 
                             <!-- Header color -->
                             <div class="form-group {{ $errors->has('header_color') ? 'error' : '' }}">
@@ -129,9 +129,9 @@
                         </fieldset>
 
                         <fieldset name="logo-preferences">
-                            <x-form-legend>
+                            <x-form.legend>
                                 {{ trans('admin/settings/general.legends.logos') }}
-                            </x-form-legend>
+                            </x-form.legend>
 
                             @php
                                 $optionTypes = trans('admin/settings/general.logo_option_types');
@@ -286,9 +286,9 @@
                         <!-- colors and skins -->
 
                         <fieldset name="css-preferences">
-                            <x-form-legend>
+                            <x-form.legend>
                                 {{ trans('admin/settings/general.custom_css') }}
-                            </x-form-legend>
+                            </x-form.legend>
                             <!-- Custom css -->
                             <div class="form-group {{ $errors->has('custom_css') ? 'error' : '' }}">
 
@@ -324,9 +324,9 @@
                             <!-- colors and skins -->
 
                             <fieldset name="footer-preferences">
-                                <x-form-legend>
+                                <x-form.legend>
                                     {{ trans('admin/settings/general.legends.footer') }}
-                                </x-form-legend>
+                                </x-form.legend>
 
                                 <!-- Support Footer -->
                                 <div class="form-group {{ $errors->has('support_footer') ? 'error' : '' }}">

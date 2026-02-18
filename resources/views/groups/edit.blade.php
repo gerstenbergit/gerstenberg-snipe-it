@@ -41,9 +41,9 @@
 
 
 <fieldset>
-    <x-form-legend icon="warning" help_text="{{ (isset($all_users_count) && ($all_users_count < config('app.max_unpaginated_records'))) ? trans('general.add_users_to_group_help') : trans('admin/settings/general.too_many_users_to_show', ['count'=> $all_users_count, 'max' => config('app.max_unpaginated_records')]) }}">
+    <x-form.legend icon="warning" help_text="{{ (isset($all_users_count) && ($all_users_count < config('app.max_unpaginated_records'))) ? trans('general.add_users_to_group_help') : trans('admin/settings/general.too_many_users_to_show', ['count'=> $all_users_count, 'max' => config('app.max_unpaginated_records')]) }}">
        {{ trans('general.add_users_to_group') }}
-    </x-form-legend>
+    </x-form.legend>
 
 <!-- this is a temp fix for the select2 not working inside modals -->
 

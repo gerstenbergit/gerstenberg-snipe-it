@@ -14,34 +14,30 @@
 
 {{-- Page content --}}
 @section('content')
-
     <x-container>
-        <x-box.container>
+        <x-box name="models">
 
-    @include('partials.models-bulk-actions')
-            <table
-                    data-columns="{{ \App\Presenters\AssetModelPresenter::dataTableLayout() }}"
-                    data-cookie-id-table="asssetModelsTable"
-                    data-id-table="asssetModelsTable"
-                    data-show-footer="true"
-                    data-side-pagination="server"
-                    data-footer-style="footerStyle"
-                    data-toolbar="#modelsBulkEditToolbar"
-                    data-bulk-button-id="#bulkModelsEditButton"
-                    data-bulk-form-id="#modelsBulkForm"
-                    data-sort-order="asc"
-                    id="asssetModelsTable"
-                    data-buttons="modelButtons"
-                    class="table table-striped snipe-table"
-                    data-url="{{ route('api.models.index', ['status' => e(request('status'))]) }}"
-                    data-export-options='{
-          "fileName": "export-models-{{ date('Y-m-d') }}",
-          "ignoreColumn": ["actions","image","change","checkbox","checkincheckout","icon"]
-          }'>
-          </table>
-        </x-box.container>
+
+            <x-slot:bulkactions>
+                <x-table.bulk-models />
+            </x-slot:bulkactions>
+
+            <x-table
+                    name="models"
+                    show_column_search="false"
+                    show_advanced_search="true"
+                    show_footer="true"
+                    buttons="modelButtons"
+                    fixed_right_number="2"
+                    fixed_number="1"
+                    toolbar_id="modelsToolbar"
+                    api_url="{{ route('api.models.index', ['status' => e(request('status'))]) }}"
+                    :presenter="\App\Presenters\AssetModelPresenter::dataTableLayout()"
+                    export_filename="export-models-{{ date('Y-m-d') }}"
+            />
+
+        </x-box>
     </x-container>
-
 @stop
 
 @section('moar_scripts')

@@ -18,9 +18,9 @@
       <div class="box-body">
 
           <fieldset name="display-preferences">
-              <x-form-legend>
+              <x-form.legend>
                   {{ trans('admin/settings/general.legends.display') }}
-              </x-form-legend>
+              </x-form.legend>
 
               <!-- Language -->
               <div class="form-group {{ $errors->has('locale') ? 'has-error' : '' }}">
@@ -110,9 +110,9 @@
           @can('self.profile')
 
           <fieldset name="user-preferences">
-              <x-form-legend>
+              <x-form.legend>
                   {{ trans('admin/settings/general.legends.your_details') }}
-              </x-form-legend>
+              </x-form.legend>
                 <!-- First Name -->
                     <div class="form-group {{ $errors->has('first_name') ? ' has-error' : '' }}">
                       <label for="first_name" class="col-md-3 control-label">{{ trans('general.first_name') }}

@@ -42,9 +42,9 @@
 
 
                         <fieldset name="remote-login">
-                            <x-form-legend>
+                            <x-form.legend>
                                 {{ trans('admin/settings/general.legends.general') }}
-                            </x-form-legend>
+                            </x-form.legend>
 
                             <!-- Menu Alerts Enabled -->
                             <div class="form-group{{ $errors->has('show_alerts_in_menu') ? ' error' : '' }}">
@@ -69,9 +69,9 @@
                         </fieldset>
 
                         <fieldset name="alert-addresses">
-                            <x-form-legend>
+                            <x-form.legend>
                                 {{ trans('admin/settings/general.legends.email') }}
-                            </x-form-legend>
+                            </x-form.legend>
 
                             <!-- Alert Email -->
                             <div class="form-group {{ $errors->has('alert_email') ? 'error' : '' }}">
@@ -132,9 +132,9 @@
 
                         <fieldset name="remote-login">
 
-                            <x-form-legend>
+                            <x-form.legend>
                                 {{ trans('admin/settings/general.legends.intervals') }}
-                            </x-form-legend>
+                            </x-form.legend>
 
                             <!-- Inventory alert threshold -->
                             <div class="form-group {{ $errors->has('alert_threshold') ? 'error' : '' }}">

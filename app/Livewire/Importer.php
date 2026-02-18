@@ -409,14 +409,13 @@ class Importer extends Component
             'category' => trans('general.category'),
             'eol' => trans('general.eol'),
             'fieldset' => trans('admin/models/general.fieldset'),
-            'item_name' => trans('general.item_name_var', ['item' => trans('general.asset_model')]),
+            'name' => trans('general.item_name_var', ['item' => trans('general.asset_model')]),
             'manufacturer' => trans('general.manufacturer'),
             'min_amt' => trans('mail.min_QTY'),
             'model_number' => trans('general.model_no'),
             'notes' => trans('general.item_notes', ['item' => trans('admin/hardware/form.model')]),
             'requestable' => trans('admin/models/general.requestable'),
             'require_serial' => trans('admin/hardware/general.require_serial'),
-
         ];
 
         // "real fieldnames" to a list of aliases for that field
@@ -425,6 +424,8 @@ class Importer extends Component
                 [
                     'item name',
                     'asset name',
+                    'model name',
+                    'asset model name',
                     'accessory name',
                     'user name',
                     'consumable name',

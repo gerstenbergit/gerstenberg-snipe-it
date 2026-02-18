@@ -9,42 +9,32 @@
 {{-- Page content --}}
 @section('content')
     <x-container>
-        <x-box.container>
+        <x-box>
 
-              <x-tables.bulk-actions
-                      id_divname='suppliersBulkEditToolbar'
-                      action_route="{{route('suppliers.bulk.delete')}}"
-                      id_formname="suppliersBulkForm"
-                      id_button="bulkSupplierEditButton"
-                      model_name="supplier"
-              >
-              @can('delete', App\Models\Supplier::class)
-                  <option>Delete</option>
-              @endcan
-              </x-tables.bulk-actions>
+            <x-slot:bulkactions>
+                <x-table.bulk-actions
+                        name='supplier'
+                        action_route="{{route('suppliers.bulk.delete')}}"
+                        model_name="supplier"
+                >
+                    @can('delete', App\Models\Supplier::class)
+                        <option>{{ trans('general.delete') }}</option>
+                    @endcan
+                </x-table.bulk-actions>
+            </x-slot:bulkactions>
 
-            <table
-            data-columns="{{ \App\Presenters\SupplierPresenter::dataTableLayout() }}"
-            data-cookie-id-table="suppliersTable"
-            data-id-table="suppliersTable"
-            data-side-pagination="server"
-            data-sort-order="asc"
-            id="suppliersTable"
-            {{-- begin stuff for bulk dropdown --}}
-            data-toolbar="#suppliersBulkEditToolbar"
-            data-bulk-button-id="#bulkSupplierEditButton"
-            data-bulk-form-id="#suppliersBulkForm"
-            {{-- end stuff for bulk dropdown --}}
-            data-advanced-search="false"
-            data-buttons="supplierButtons"
-            class="table table-striped snipe-table"
-            data-url="{{ route('api.suppliers.index') }}"
-            data-export-options='{
-            "fileName": "export-suppliers-{{ date('Y-m-d') }}",
-            "ignoreColumn": ["actions","image","change","checkbox","checkincheckout","icon"]
-            }'>
-      </table>
-        </x-box.container>
+
+            <x-table
+                name="supplier"
+                buttons="supplierButtons"
+                fixed_right_number="1"
+                fixed_number="1"
+                api_url="{{ route('api.suppliers.index') }}"
+                :presenter="\App\Presenters\SupplierPresenter::dataTableLayout()"
+                export_filename="export-suppliers-{{ date('Y-m-d') }}"
+            />
+
+        </x-box>
     </x-container>
 @stop
 

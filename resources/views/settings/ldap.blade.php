@@ -94,9 +94,9 @@
                     <div class="col-md-12">
 
                         <fieldset>
-                            <x-form-legend>
+                            <x-form.legend>
                                 {{ trans('admin/settings/general.legends.server') }}
-                            </x-form-legend>
+                            </x-form.legend>
                                 <!-- Enable LDAP -->
                                 <div class="form-group {{ $errors->has('ldap_integration') ? 'error' : '' }}">
                                     <div class="col-md-3 control-label">
@@ -496,10 +496,10 @@
 
                         <fieldset>
 
-                            <x-form-legend
+                            <x-form.legend
                             help_text="{!! trans('admin/settings/general.ldap_mapping_help') !!}">
                                 {{ trans('admin/settings/general.legends.mapping') }}
-                            </x-form-legend>
+                            </x-form.legend>
 
 
                             <!-- LDAP  username field-->
@@ -896,10 +896,10 @@
                         </fieldset>
 
                         <fieldset id="ldap_test_settings">
-                            <x-form-legend
+                            <x-form.legend
                                help_text="{{ trans('admin/settings/general.save_ldap_first') }}">
                                         {{ trans('admin/settings/general.legends.test') }}
-                            </x-form-legend>
+                            </x-form.legend>
                             @if ($setting->ldap_enabled)
 
                                 <!-- LDAP Login test -->
@@ -959,9 +959,9 @@
 
 
                         <fieldset>
-                            <x-form-legend>
+                            <x-form.legend>
                                 {{ trans('admin/settings/general.legends.misc') }}
-                            </x-form-legend>
+                            </x-form.legend>
 
                                 <!-- LDAP Forgotten password -->
                                 <div class="form-group {{ $errors->has('custom_forgot_pass_url') ? 'error' : '' }}">

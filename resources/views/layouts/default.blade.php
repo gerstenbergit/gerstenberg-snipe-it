@@ -67,6 +67,7 @@
             --text-info: light-dark(#31708f,#2baae6);
             --text-success: light-dark(#039516,#4ced61);
             --text-warning: light-dark(#da9113,#f3a51f);
+            --input-border-color: light-dark(#d2d6de,#656464);
         }
 
         [data-theme="light"] {
@@ -121,10 +122,16 @@
 
         .label2_fields,
         .l2fd-main,
-        .l2fd-listitem
+        .l2fd-listitem,
+        .fixed-table-loading,
+        .list-group-item
         {
             background-color: var(--box-bg) !important;
             color: var(--color-fg) !important;
+        }
+
+        .list-group-item {
+            border: var(--tab-bottom-border);
         }
 
         footer.main-footer {
@@ -169,6 +176,11 @@
             border: 1px solid hsl(from var(--btn-theme-base) h s calc(l - 15)) !important;
         }
 
+        .btn-theme.active
+        {
+            background-color: var(--btn-theme-hover) !important;
+        }
+
         .btn-theme:focus {
             color: var(--nav-primary-text-color) !important;
         }
@@ -205,6 +217,7 @@
         {
             background-color: var(--table-stripe-bg) !important;
             color: var(--color-fg) !important;
+            border-color: var(--input-border-color) !important;
 
         }
 
@@ -279,25 +292,19 @@
         }
 
 
-        input[type="text"]:focus,
-        input[type="url"]:focus,
-        input[type="date"]:focus,
-        input[type="email"]:focus,
-        input[type="number"]:focus,
-        input[type="password"]:focus,
-        textarea:focus
-        {
-            border-color: hsl(from var(--main-theme-color) h s calc(l - 5)) !important;
-        }
 
-        *:disabled,
+        input[type="*"]:disabled,
+        input[type=checkbox]:disabled,
+        input[type=radio]:disabled,
         input[readonly],
+        .select2-container--default.select2-container--disabled .select2-selection--single,
+        .select2-container--default.select2-container--disabled .select2-selection__rendered,
         textarea[readonly]
         {
             background-color: light-dark(rgb(234, 232, 232), rgb(117, 116, 117)) !important;
-            border: 1px solid light-dark(rgb(234, 232, 232), rgb(117, 116, 117)) !important;
             cursor: not-allowed !important;
         }
+
 
 
         input[type="search"].search-highlight {
@@ -419,6 +426,8 @@
             border-top:  var(--box-header-top-border);
         }
 
+
+
         .box-header.with-border {
             border-bottom: var(--box-header-bottom-border);
         }
@@ -526,7 +535,7 @@
         {
             background-color: var(--table-stripe-bg) !important;
             border-top: var(--table-border-row-top) !important;
-            color: var(--nav-primary-text-color) !important;
+            color: var(--color-fg) !important;
         }
 
         .table-striped > tbody > tr:nth-of-type(odd),
@@ -536,6 +545,7 @@
         {
             background-color: var(--table-stripe-bg-alt) !important;
             border-top: var(--table-border-row-top) !important;
+            color: var(--color-fg) !important;
         }
 
 
@@ -672,6 +682,10 @@
             background-color: #1e282c;
         }
 
+        .list-group-item.subitem {
+            padding-left:20px !important;
+        }
+
         .sidebar-menu>li.active > a,
         .sidebar-menu>li:hover>a,
         .treeview-menu>li> a
@@ -692,11 +706,15 @@
             background-color: #2c3b41;
         }
 
-        .sidebar-menu>li>.treeview-menu,
+        .sidebar-menu>li>.treeview-menu
         {
             background-color: #1e282c;
         }
 
+
+        .list-group-item:first-child {
+            border-top: 0 !important;
+        }
 
         .sidebar-menu > li > a:link,
         .sidebar-menu > li > a:visited,
@@ -727,6 +745,7 @@
         {
             border-top-color: var(--box-bg) !important;
             border-bottom-color: var(--box-header-bottom-border-color) !important;
+            color: var(--color-fg);
         }
 
 
@@ -896,6 +915,22 @@
 
         .small-box h3, .small-box p {
             color: white !important;
+        }
+
+        .box.box-theme {
+            border-top:  var(--main-theme-color) !important;
+        }
+
+        input[type="date"]:focus,
+        input[type="number"]:focus,
+        input[type="text"]:focus,
+        input[type="url"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        input[type="tel"]:focus,
+        textarea:focus
+        {
+            border-color: hsl(from var(--main-theme-color) h s calc(l - 5)) !important;
         }
 
     </style>
@@ -1818,7 +1853,7 @@
                         <a target="_blank" href="https://bsky.app/profile/snipeitapp.com" rel="noopener" data-tooltip="true" data-title="Join us on Bluesky">
                             <i class="fa-brands fa-square-bluesky fa-fw"></i>
                         </a>
-                        <a target="_blank" href="https://hachyderm.io/@grokability" rel="noopener" data-tooltip="true" data-title="Join us on Github">
+                        <a target="_blank" href="https://github.com/grokability/snipe-it/" rel="noopener" data-tooltip="true" data-title="Join us on Github">
                             <i class="fa-brands fa-square-github fa-fw"></i>
                         </a>
                         <a target="_blank" href="https://hachyderm.io/@grokability" rel="noopener" data-tooltip="true" data-title="Join us on Mastodon">
@@ -2167,6 +2202,29 @@
              }
 
             $(function () {
+
+
+                // Handle the info-panel
+                $("#expand-info-panel-button").click(function () {
+
+                    $('.side-box').parent('div').parent('div').parent('div').hide();
+                    $(window).on('load', function() {
+                        $('.side-box').parent('div').parent('div').parent('div').show();
+                    });
+
+                    if($('.side-box').hasClass('expanded')) {
+                        $('.main-panel').removeClass('col-md-9').addClass('col-md-12');
+                        $('.side-box').removeClass('expanded');
+                        $("#expand-info-panel-button").addClass('fa-square-caret-left').removeClass('fa-square-caret-right');
+                    } else {
+                        $('.side-box').parent('div').parent('div').parent('div').fadeToggle("fast")
+                        $('.side-box').addClass('expanded');
+                        $('.main-panel').removeClass('col-md-12').addClass('col-md-9');
+                        $("#expand-info-panel-button").addClass('fa-square-caret-right').removeClass('fa-square-caret-left');
+                    }
+                });
+
+
 
                 // This handles the show/hide for cloned items
                 $('#use_cloned_image').click(function() {

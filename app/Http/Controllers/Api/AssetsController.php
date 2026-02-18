@@ -154,15 +154,15 @@ class AssetsController extends Controller
         }
 
         $assets = Asset::select('assets.*')
-            ->addSelect([
-                'first_checkout_at' => Actionlog::query()
-                    ->select('created_at')
-                    ->whereColumn('item_id', 'assets.id')
-                    ->where('item_type', Asset::class)
-                    ->where('action_type', 'checkout')
-                    ->orderBy('created_at')
-                    ->limit(1),
-            ])
+//            ->addSelect([
+//                'first_checkout_at' => Actionlog::query()
+//                    ->select('created_at')
+//                    ->whereColumn('item_id', 'assets.id')
+//                    ->where('item_type', Asset::class)
+//                    ->where('action_type', 'checkout')
+//                    ->orderBy('created_at')
+//                    ->limit(1),
+//            ])
             ->with(
                 'model',
                 'location',
@@ -820,7 +820,10 @@ class AssetsController extends Controller
             }
 
             if (isset($target)) {
-                $asset->checkOut($target, auth()->user(), date('Y-m-d H:i:s'), '', 'Checked out on asset update', e($request->input('name')), $location);
+                // Using `->has` preserves the asset name if the name parameter was not included in request.
+                $asset_name = request()->has('name') ? request('name') : $asset->name;
+
+                $asset->checkOut($target, auth()->user(), date('Y-m-d H:i:s'), '', 'Checked out on asset update', $asset_name, $location);
             }
 
             if ($asset->image) {

@@ -15,7 +15,7 @@
 @section('content')
     <x-container columns="2">
         <x-page-column class="col-md-9">
-            <x-box.container>
+            <x-box>
 
 
 
@@ -31,7 +31,7 @@
                                         "ignoreColumn": ["actions","image","change","checkbox","checkincheckout","icon"]
                                         }'>
                                 </table>
-            </x-box.container>
+            </x-box>
 
         </x-page-column>
 

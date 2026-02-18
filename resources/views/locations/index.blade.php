@@ -9,7 +9,7 @@
 
 @section('content')
     <x-container>
-        <x-box.container>
+        <x-box>
             @include('partials.locations-bulk-actions')
 
             <table
@@ -32,7 +32,7 @@
                       }'>
             </table>
 
-        </x-box.container>
+        </x-box>
     </x-container>
 @stop
 

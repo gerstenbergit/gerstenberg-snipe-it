@@ -778,7 +778,7 @@ class Helper
         $consumables = Consumable::withCount('consumableAssignments as consumable_assignments_count')->whereNotNull('min_amt')->get();
         $accessories = Accessory::withCount('checkouts as checkouts_count')->whereNotNull('min_amt')->get();
         $components = Component::whereNotNull('min_amt')->get();
-        $asset_models = AssetModel::where('min_amt', '>', 0)->get();
+        $asset_models = AssetModel::where('min_amt', '>', 0)->withCount(['availableAssets', 'assets'])->get();
         $licenses = License::where('min_amt', '>', 0)->get();
 
         $items_array = [];
@@ -844,8 +844,8 @@ class Helper
         foreach ($asset_models as $asset_model){
 
             $asset = new Asset();
-            $total_owned = $asset->where('model_id', '=', $asset_model->id)->count();
-            $avail = $asset->where('model_id', '=', $asset_model->id)->whereNull('assigned_to')->count();
+            $total_owned = $asset_model->assets_count; //requires the withCount() clause in the initial query!
+            $avail = $asset_model->available_assets_count; //requires the withCount() clause in the initial query!
 
             if ($avail <= ($asset_model->min_amt) + $alert_threshold) {
                 if ($avail > 0) {

@@ -9,7 +9,7 @@
 {{-- Page content --}}
 @section('content')
     <x-container>
-        <x-box.container>
+        <x-box>
 
             @if ($manufacturer_count == 0)
 
@@ -26,42 +26,34 @@
                     </form>
 
               @else
-                        <x-tables.bulk-actions
-                                id_divname='manufacturersBulkEditToolbar'
-                                action_route="{{route('manufacturers.bulk.delete')}}"
-                                id_formname="manufacturersBulkForm"
-                                id_button="bulkManufacturerEditButton"
-                                model_name="manufacturer"
-                        >
-                            @can('delete', App\Models\Manufacturer::class)
-                                <option>{{trans('general.delete')}}</option>
-                            @endcan
-                        </x-tables.bulk-actions>
+                <x-slot:bulkactions>
+                    <x-table.bulk-actions
+                            name='manufacturer'
+                            action_route="{{route('manufacturers.bulk.delete')}}"
+                            model_name="manufacturer"
+                    >
+                        @can('delete', App\Models\Manufacturer::class)
+                            <option>Delete</option>
+                        @endcan
+                    </x-table.bulk-actions>
+                </x-slot:bulkactions>
 
-                    <table
-                      data-columns="{{ \App\Presenters\ManufacturerPresenter::dataTableLayout() }}"
-                      data-cookie-id-table="manufacturersTable"
-                      data-id-table="manufacturersTable"
-                      data-advanced-search="false"
-                      data-side-pagination="server"
-                      data-sort-order="asc"
-                      id="manufacturersTable"
-                      {{-- begin stuff for bulk dropdown --}}
-                      data-toolbar="#manufacturersBulkEditToolbar"
-                      data-bulk-button-id="#bulkManufacturerEditButton"
-                      data-bulk-form-id="#manufacturersBulkForm"
-                      {{-- end stuff for bulk dropdown --}}
-                      data-buttons="manufacturerButtons"
-                      class="table table-striped snipe-table"
-                      data-url="{{route('api.manufacturers.index', ['status' => e(request()->input('status')) ]) }}"
-                      data-export-options='{
-                        "fileName": "export-manufacturers-{{ date('Y-m-d') }}",
-                        "ignoreColumn": ["actions","image","change","checkbox","checkincheckout","icon"]
-                        }'>
-                    </table>
 
-                    @endif
-        </x-box.container>
+                <x-table
+                        name="manufacturer"
+                        buttons="manufacturerButtons"
+                        fixed_right_number="1"
+                        fixed_number="1"
+                        api_url="{{ route('api.manufacturers.index') }}"
+                        :presenter="\App\Presenters\ManufacturerPresenter::dataTableLayout()"
+                        export_filename="export-manufacturers-{{ date('Y-m-d') }}"
+                />
+
+
+
+
+            @endif
+        </x-box>
     </x-container>
 @stop
 

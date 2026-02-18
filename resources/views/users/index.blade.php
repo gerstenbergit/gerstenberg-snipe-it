@@ -28,7 +28,7 @@
 {{-- Page content --}}
 @section('content')
     <x-container>
-        <x-box.container>
+        <x-box>
 
             @include('partials.users-bulk-actions')
 
@@ -42,6 +42,7 @@
                     data-bulk-form-id="#usersBulkForm"
                     data-show-columns-search="true"
                     id="usersTable"
+                    data-fixed-number="2"
                     data-buttons="userButtons"
                     class="table table-striped snipe-table"
                     data-url="{{ route('api.users.index',
@@ -59,7 +60,7 @@
                 "ignoreColumn": ["actions","image","change","checkbox","checkincheckout","icon"]
                 }'>
                     </table>
-        </x-box.container>
+        </x-box>
     </x-container>
 
 

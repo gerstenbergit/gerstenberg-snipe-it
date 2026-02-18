@@ -9,7 +9,7 @@
 {{-- Page content --}}
 @section('content')
     <x-container>
-        <x-box.container>
+        <x-box>
             <table
                     data-cookie-id-table="maintenancesReport"
                     data-show-footer="true"
@@ -45,7 +45,7 @@
                 </tr>
                 </thead>
             </table>
-        </x-box.container>
+        </x-box>
     </x-container>
 @stop
 

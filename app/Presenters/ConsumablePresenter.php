@@ -21,8 +21,15 @@ class ConsumablePresenter extends Presenter
                 'switchable' => true,
                 'title' => trans('general.id'),
                 'visible' => false,
-            ],
-            [
+            ], [
+                'field' => 'name',
+                'searchable' => true,
+                'sortable' => true,
+                'switchable' => false,
+                'title' => trans('general.name'),
+                'visible' => true,
+                'formatter' => 'consumablesLinkFormatter',
+            ], [
                 'field' => 'company',
                 'searchable' => true,
                 'sortable' => true,
@@ -31,15 +38,7 @@ class ConsumablePresenter extends Presenter
                 'visible' => false,
                 'formatter' => 'companiesLinkObjFormatter',
             ],
-            [
-                'field' => 'name',
-                'searchable' => true,
-                'sortable' => true,
-                'switchable' => false,
-                'title' => trans('general.name'),
-                'visible' => true,
-                'formatter' => 'consumablesLinkFormatter',
-            ],
+
             [
                 'field' => 'image',
                 'searchable' => false,
@@ -172,6 +171,7 @@ class ConsumablePresenter extends Presenter
                 'visible' => true,
                 'title' => trans('general.change'),
                 'formatter' => 'consumablesInOutFormatter',
+                'printIgnore' => true,
             ], [
                 'field' => 'actions',
                 'searchable' => false,

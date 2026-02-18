@@ -55,7 +55,7 @@ class IconHelper
             case 'download':
                 return 'fas fa-download';
             case 'checkmark':
-                return 'fas fa-check icon-white';
+                return 'fas fa-check';
             case 'x':
                 return 'fas fa-times';
             case 'logout':
@@ -131,9 +131,12 @@ class IconHelper
                 return 'fa-regular fa-clipboard';
             case 'paperclip':
                 return 'fas fa-paperclip';
+            case 'contact-card':
+                return 'fa-regular fa-id-card';
             case 'files':
                 return 'fa-regular fa-file';
             case 'more-info':
+            case 'support':
                 return 'far fa-life-ring';
             case 'calendar':
                 return 'fas fa-calendar';
@@ -144,7 +147,7 @@ class IconHelper
             case 'more-files':
                 return 'fa-solid fa-laptop-file';
             case 'maintenances':
-                return 'fas fa-wrench';
+                return 'fa-solid fa-screwdriver-wrench';
             case 'seats':
                 return 'far fa-list-alt';
             case 'globe-us':
@@ -203,6 +206,54 @@ class IconHelper
                 return 'fa-solid fa-lightbulb';
             case 'highlight':
                 return 'fa-solid fa-highlighter';
+            case 'manager':
+                return 'fa-solid fa-building-user';
+            case 'company':
+                return 'fa-regular fa-building';
+            case 'parent':
+                return 'fa-solid fa-building-flag';
+            case 'number':
+                return 'fa-solid fa-hashtag';
+            case 'depreciation':
+                return 'fa-solid fa-arrows-down-to-line';
+            case 'depreciation-calendar':
+            case 'expiration':
+            case 'terminates':
+                return 'fa-regular fa-calendar-xmark';
+            case 'manufacturer':
+                return 'fa-solid fa-industry';
+            case 'fieldset' :
+                return 'fa-regular fa-rectangle-list';
+            case 'deleted-date':
+                return 'fa-solid fa-calendar-xmark';
+            case 'eol':
+                return 'fa-regular fa-calendar-days';
+            case 'category':
+                return 'fa-solid fa-icons';
+            case 'cost':
+                return 'fa-solid fa-money-bills';
+            case 'available':
+                return 'fa-solid fa-box';
+            case 'checkedout':
+                return 'fa-solid fa-box-open';
+            case 'purchase_order':
+                return 'fa-solid fa-file-invoice-dollar';
+            case 'order':
+                return 'fa-solid fa-file-invoice';
+            case 'checkout-all':
+                return 'fa-solid fa-arrows-down-to-people';
+            case 'square-right':
+                return 'fa-regular fa-square-caret-right';
+            case 'square-left':
+                return 'fa-regular fa-square-caret-left';
+            case 'square':
+                return 'fa-solid fa-square';
+            case 'models':
+            case 'model':
+                return 'fa-solid fa-boxes-stacked';
+            case 'min-qty':
+                return 'fa-solid fa-chart-pie';
+
         }
     }
 }

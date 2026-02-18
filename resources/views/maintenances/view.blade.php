@@ -71,7 +71,7 @@ use Carbon\Carbon;
                 </div>
                 <div class="col-md-9">
                   <a href="{{ route('hardware.show', $maintenance->asset_id) }}">
-                    {{ $maintenance->asset->present()->fullName }}
+                    {{ $maintenance->asset?->present()->fullName }}
                   </a>
                 </div>
               </div> <!-- /row -->

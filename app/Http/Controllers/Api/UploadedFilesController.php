@@ -113,7 +113,7 @@ class UploadedFilesController extends Controller
                 $object->logUpload($file_name, $request->input('notes'));
             }
 
-            if ($files) {
+            if (isset($files)) {
                 $file_results = Actionlog::select('action_logs.*')->where('action_type', '=', 'uploaded')
                     ->where('item_type', '=', self::$map_object_type[$object_type])
                     ->where('item_id', '=', $id)->whereIn('filename', $files)
