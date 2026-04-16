@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Enums;
+
 enum ActionType: string
 {
     // General
@@ -22,6 +23,8 @@ enum ActionType: string
     // Users
     case TwoFactorReset = '2FA reset';
     case Merged = 'merged';
+    case TokenRevoked = 'token revoked';
+    case TokenUnrevoked = 'token unrevoked';
 
     // Licenses
     case DeleteSeats = 'delete seats';
